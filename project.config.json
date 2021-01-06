@@ -1,0 +1,90 @@
+{
+  "description": "项目配置文件",
+  "cloudfunctionRoot": "cloudfunctions/",
+  "packOptions": {
+    "ignore": []
+  },
+  "setting": {
+    "urlCheck": true,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "preloadBackgroundData": false,
+    "minified": true,
+    "newFeature": true,
+    "coverView": true,
+    "nodeModules": false,
+    "autoAudits": false,
+    "showShadowRootInWxmlPanel": true,
+    "scopeDataCheck": false,
+    "uglifyFileName": false,
+    "checkInvalidKey": true,
+    "checkSiteMap": true,
+    "uploadWithSourceMap": true,
+    "compileHotReLoad": false,
+    "useMultiFrameRuntime": false,
+    "useApiHook": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "enableEngineNative": false,
+    "bundle": true,
+    "useIsolateContext": true,
+    "useCompilerModule": true,
+    "userConfirmedUseCompilerModuleSwitch": false,
+    "userConfirmedBundleSwitch": true,
+    "packNpmManually": false,
+    "packNpmRelationList": [],
+    "minifyWXSS": true
+  },
+  "compileType": "miniprogram",
+  "libVersion": "2.10.3",
+  "appid": "wx4d2d3d6b8ee499d6",
+  "projectname": "0510",
+  "debugOptions": {
+    "hidedInDevtools": []
+  },
+  "isGameTourist": false,
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "pages/home/home",
+          "pathName": "pages/home/home",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/running/running",
+          "pathName": "pages/running/running",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/test/test",
+          "pathName": "pages/test/test",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/runningRecord/runningRecord",
+          "pathName": "pages/runningRecord/runningRecord",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,7 @@
+<!--pages/home/home.wxml-->
+<text>pages/home/home.wxml</text>
+{{avatarUrl}}
+{{nickName}}
+<button bindtap='chek'>触发测试函数</button>
+<button bindtap="go_running">开始运动</button>
+<button bindtap="go_runningRecord">查看运动记录</button>

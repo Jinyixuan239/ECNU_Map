@@ -1,0 +1,13 @@
+
+<text>pages/running/running.wxml</text>
+<view class="map_container">
+  <map class='map' longitude='{{longitude}}' latitude='{{latitude}}' scale='16'  controls="{{controls}}" bindcontroltap="bindcontroltap" polyline='{{polyline}}' circles="{{circles}}"  bindmarkertap='bindmarkertap' bindcontroltap='bindcontroltap'
+    show-location  markers="{{markers}}"><button class="start_run" bindtap="start" style="width:70px">开始</button>
+  </map>
+</view>
+<view class="map_text">
+    <text class='h1'>已用时：{{hours}}:{{minute}}:{{second}}</text>
+    <text class="h2">速度：{{speed}}km/h</text>
+    <text class="h3">路程:{{distance}}km</text>
+    <button class="end_run" bindtap="end" style="width:70px">结束</button>
+</view>

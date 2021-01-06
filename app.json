@@ -1,0 +1,25 @@
+{
+  "pages": [
+    "pages/loginAndRegister/loginAndRegister",
+    "pages/test/test",
+    "pages/home/home",
+    "pages/running/running",
+    "pages/runningRecord/runningRecord"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#efd301",
+    "navigationBarTitleText": "课外活动小助手",
+    "navigationBarTextStyle": "white",
+    "backgroundTextStyle": "dark"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示" 
+    }
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}
+
+
+

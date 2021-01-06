@@ -1,0 +1,65 @@
+/* pages/running/running.wxss */
+
+.map_container{
+  position: absolute;
+  top: 0;
+  bottom: 250px;
+  left: 0;
+  right: 0;
+}
+.map{
+  width: 100%;
+  height: 100%;
+}
+.map_text{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0px;
+  height: 254px;
+  background: #fff;
+  padding: 0 15px;
+}
+.start_run{
+  position: absolute;
+  top:200px;
+  right:10px;
+  width:70px;
+  height:70px;
+  border:0 solid #ffffff;
+  border-radius: 35px;
+}
+.end_run{
+  position: absolute;
+  background-color:rgba(255,0,0,0.45);
+  top:20px;
+  right:10px;
+  width:70px;
+  height:70px;
+  border:0 solid #ffffff;
+  border-radius: 35px;
+}
+
+.h1{
+  position: absolute;
+  margin:5px 0;
+  top:10px;
+  font-size:15px;
+}
+.h2{
+  position: absolute;
+  margin: 5px 0;
+  top:30px;
+  font-size:15px;
+}
+.h3{
+  position:absolute;
+  margin:5px 0;
+  top:50px;
+  font-size:15px;
+}
+.h4{
+  margin:5px 0;
+  top:70px;
+  font-size:15px;
+}
