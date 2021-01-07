@@ -1,0 +1,4 @@
+
+<button wx:if="{{length==1}}" bindtap="sss"> 1 </button>
+<button wx:elif="{{length==2}}" bindtap="sss"> 2 </button>
+<button wx:else bindtap="sss"> 3 </button>

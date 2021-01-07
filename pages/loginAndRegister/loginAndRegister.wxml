@@ -1,0 +1,5 @@
+<!--index.wxml-->
+
+<image class="background-image" src="cloud://ecnu-8gpse6bdd299c09f.6563-ecnu-8gpse6bdd299c09f-1304551843/loginBackground.png" />
+<button bindgetuserinfo='getUserInfo' open-type="getUserInfo" class="loginButton" style="width:250rpx">登录</button>
+<image class="ecnuLogo" src="cloud://ecnu-8gpse6bdd299c09f.6563-ecnu-8gpse6bdd299c09f-1304551843/ecnuLogo.png" />

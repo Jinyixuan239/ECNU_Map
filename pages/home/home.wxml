@@ -1,0 +1,12 @@
+<!--pages/home/home.wxml-->
+
+<!-- {{avatarUrl}}
+{{nickName}} -->
+<!-- <button bindtap='chek'>触发测试函数</button> -->
+
+  <image class="background-image" src="cloud://ecnu-8gpse6bdd299c09f.6563-ecnu-8gpse6bdd299c09f-1304551843/homeBackground.png" />
+  <text class="username">{{nickName}}</text>
+
+  <button bindtap="go_running" class="startButton" style="width: 300rpx;">开始跑步</button>
+  <button bindtap="go_runningRecord" class="recordButton" style="width: 300rpx;">锻炼记录</button>
+

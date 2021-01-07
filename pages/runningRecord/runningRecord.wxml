@@ -1,0 +1,18 @@
+<!--pages/runningRecord/runningRecord.wxml-->
+<view class="content">
+  <image class='background'
+    src="cloud://ecnu-8gpse6bdd299c09f.6563-ecnu-8gpse6bdd299c09f-1304551843/frameWork (4)(1)/pages/image/1.png"
+    mode="aspectFill"></image>
+  <view class="out">
+    <view class="row" wx:for="{{dataList_test}}">
+      <view wx:if="{{item.ifPass>0}}" class="time1" style="opacity:{{0.8}}">{{item.startTime}}</view>
+      <view wx:else class='time2' style="opacity:{{0.8}}">{{item.startTime}}</view>
+      <view class="text">
+        <view class="title1">{{item.distance}}
+          <view class="title2">km</view>
+        </view>
+        <view class="title2">{{item.totalTime}}</view>
+      </view>
+    </view>
+  </view>
+</view>
