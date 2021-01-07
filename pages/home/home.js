@@ -1,12 +1,12 @@
 // pages/home/home.js
 
 var app = getApp();
-const DB = wx.cloud.database().collection("User")
-const db = wx.cloud.database({
-  env: ' ecnu-8gpse6bdd299c09f'
-})
-const _ = db.command
-var locations
+// const DB = wx.cloud.database().collection("User")
+// const db = wx.cloud.database({
+//   env: ' ecnu-8gpse6bdd299c09f'
+// })
+// const _ = db.command
+// var locations
 Page({
   go_runningRecord: function () {
     wx.navigateTo({
@@ -14,24 +14,10 @@ Page({
     })
   },
   go_running: function () {
-    console.log("跑步")
-    DB.where({
-      _id: "a8831daa5fdc64f4001fb7b95c6a9395"
-    }).get({
-      success(res) {
-        // console.log(res.data[0].location)
-        let that = this
-        locations=res.data[0].location
-        app.globalData.locations=locations
-        wx.navigateTo({
-          url: "/pages/running/running"
-        })    
-      }
-    })
-    
-  },
-  chek: function () {
-    
+    wx.navigateTo({
+      url: "/pages/running/running"
+    })  
+    // console.log("跑步") 
   },
   /**
    * 页面的初始数据
@@ -46,11 +32,24 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    
+var openid = wx.getStorageSync('openid');
+var nickName = wx.getStorageSync('nickName');
+var avatarUrl = wx.getStorageSync('avatarUrl');
+// console.log(openid)
+// console.log(nickName)
+// console.log(avatarUrl)
+    // console.log(app.globalData.openid)
     let that = this
     this.setData({
-      avatarUrl: app.globalData.userInfo.avatarUrl,
       nickName: app.globalData.userInfo.nickName
     })
+//     DB.where({
+//       _id: app.globalData.openid
+//     }).get({
+//       success(res) {
+// // console.log(res)
+//       }})
   },
 
   /**

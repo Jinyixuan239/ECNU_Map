@@ -4,24 +4,26 @@
   height: 150rpx;
   margin-bottom: 20rpx;
 }
-    
+
 .time1 {
   flex: 4;
-  background: #EAF2D3;
+  /* background: #EAF2D3; */
+  background: #b2f3bb;
   padding-left: 30rpx;
   display: flex;
   font-family: Impact, Haettenschweiler, ‘Arial Narrow Bold’, sans-serif;
-  font-size: 40rpx;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   border-bottom-left-radius: 25px;
+  font-size: 40rpx;
   border-top-left-radius: 25px;
 }
 
 .time2 {
   flex: 4;
-  background: #dd6676;
+  /* background: #dd6676; */
+  background: #f57183;
   padding-left: 30rpx;
   display: flex;
   font-family: Impact, Haettenschweiler, ‘Arial Narrow Bold’, sans-serif;
@@ -35,7 +37,9 @@
 
 .text {
   flex: 6;
-  background: #f0ffff;
+  /* background: #f0ffff; */
+  background: #ffffff;
+  opacity: 0.8;
   padding-left: 30rpx;
   display: flex;
   flex-direction: column;

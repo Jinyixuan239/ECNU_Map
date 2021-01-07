@@ -8,6 +8,7 @@ const DB = wx.cloud.database().collection("User")
 const db = wx.cloud.database({
   env: '  ecnu-8gpse6bdd299c09f'
 })
+
 const _ = db.command
 Page({
 
@@ -17,6 +18,8 @@ Page({
   data: {
     motto: '欢迎使用ECNU课外运动打卡小程序',
     userInfo: {},
+    hasUserInfo: false,
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
     openid: '',
   },
   //事件处理函数
@@ -25,28 +28,31 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
+
   },
 
   getUserInfo: function (e) {
+    wx.showLoading({
+      title: '加载中',
+    })
     var openid
-    console.log(e.detail.errMsg)
-    console.log(e)
+    // console.log(e.detail.errMsg)
+    // console.log(e)
     app.globalData.userInfo = e.detail.userInfo
-    console.log(app)
     if (e.detail.errMsg == "getUserInfo:ok") {
       wx.login({
         success: wx.cloud.callFunction({
           name: 'getOpenid',
           complete: res => {
             // console.log('openid--',res)
+            // console.log('openid--',res.result.openid)
             openid = res.result.openid
-            // console.log(res.result.openid)
-            // console.log(res)
-            app.globalData.userInfo = e.detail.userInfo
-            app.globalData.openid =res.result.openid
-            console.log(app)
+            app.globalData.openid = res.result.openid
+
+            // console.log(app.globalData.openid)
+            // console.log('openid--',openid)
             DB.where({
-              _openid:openid
+              _openid: openid
               // _openid: "openid"
             }).get({
               success(res) {
@@ -54,23 +60,25 @@ Page({
                 // if (res.data[0]&&(!res.data[1])) {
                 if (res.data[0]) {
                   wx.cloud.database().collection('User').where({
-                    _openid:openid
+                    _openid: openid
                   }).update({
-                    data:{
+                    data: {
                       nickName: app.globalData.userInfo.nickName,
                       avatarUrl: app.globalData.userInfo.avatarUrl
                     },
                     success(res) {
-                      console.log("更新成功")
+                      // console.log("更新成功")
                       // user={openid:openid,nickName:app.globalData.userInfo.nickName,avatarUrl:app.globalData.userInfo.avatarUrl}
-                      // wx.setStorageSync('user', user)
+                      wx.setStorageSync('openid', openid)
+                      wx.setStorageSync('nickName', app.globalData.userInfo.nickName)
+                      wx.setStorageSync('avatarUrl', app.globalData.userInfo.avatarUrl)
+                      wx.hideLoading()
                       wx.navigateTo({
-                        url: "/pages/test/test"
+                        url: "/pages/home/home"
                       })
                     }
                   })
-                }
-                else{
+                } else {
                   wx.cloud.database().collection('User').add({
                     data: {
                       openid: openid,
@@ -78,23 +86,28 @@ Page({
                       avatarUrl: app.globalData.userInfo.avatarUrl
                     },
                     success(res) {
-                      console.log("注册成功")
-                      user={openid:openid,nickName:app.globalData.userInfo.nickName,avatarUrl:app.globalData.userInfo.avatarUrl}
-                      wx.setStorageSync('user', user)
+                      // console.log("注册成功")
+                      // user = {
+                      //   openid: openid,
+                      //   nickName: app.globalData.userInfo.nickName,
+                      //   avatarUrl: app.globalData.userInfo.avatarUrl
+                      // }
+                      wx.setStorageSync('user', openid)
+                      wx.hideLoading()
                       wx.navigateTo({
-                        url: "/pages/test/test"
+                        url: "/pages/home/home"
                       })
                     }
                   })
                 }
               },
-              fail(res) {
-              }
+              fail(res) {}
             })
           }
         })
       })
     } else {
+      wx.hideLoading()
       wx.showToast({
         icon: 'none',
         title: '需要成功授权才能使用',

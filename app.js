@@ -37,6 +37,7 @@ App({
       }
     })
   },
+
   globalData: {
     userInfo: {
       nickName:'nickName',
@@ -44,4 +45,5 @@ App({
     },
     openid:"openid"
   }
+  
 })

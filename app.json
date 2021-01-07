@@ -1,10 +1,11 @@
 {
   "pages": [
+    
     "pages/loginAndRegister/loginAndRegister",
-    "pages/test/test",
     "pages/home/home",
+    "pages/runningRecord/runningRecord",
     "pages/running/running",
-    "pages/runningRecord/runningRecord"
+    "pages/test/test"
   ],
   "window": {
     "navigationBarBackgroundColor": "#efd301",
