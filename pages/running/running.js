@@ -151,7 +151,7 @@ function getmaxspeed(){
 
   var speed=that2.data.speed;
   if(maxspeed<speed) maxspeed=speed;
-  maxspeed=maxspeed*1000/3600
+  maxspeed=(maxspeed*1000/3600).toFixed(2);
   that2.setData({
     maxspeed:maxspeed+'m/s'
   })
@@ -392,7 +392,7 @@ Page({
       }
       for(var q=0;q<7;q++)
       {
-        if(r[q]<5&&count[q]==0)
+        if(r[q]<0.005&&count[q]==0)
         {
           count[q]=1;
           wx.vibrateShort();
@@ -491,8 +491,8 @@ Page({
     this.setData({
       mHidden:true
     })
-    wx.navigateTo({
-      url:  "pages/runningRecord/runningRecord"
+    wx.navigateBack({
+      url:  "pages/home/home"
     })
     var endTIME=util.formatTime(new Date());
     console.log(endTIME);
@@ -514,6 +514,31 @@ Page({
         point:point
       },
     });
+    that2.setData({
+      markers: [],
+      latitude: '',
+      longitude: '',
+      mHidden:true,
+      isright:0,
+      notstart:1,
+    //跑步信息
+      polyline:[],
+      speed:'0'+0,
+      pace_min:'0'+0,
+      pace_sec:'0'+0,
+      maxspeed:'0'+0+'m/s',
+      s:'0'+0,
+      distance:'0'+0,
+      lastdistance:'0'+0,
+      hours: '0' + 0,
+      minute: '0' + 0,
+      second: '0' + 0,
+      date:'0'+0,
+      start_time:'0'+0,
+      end_time:'0'+0,
+      ifpass:0,
+      dabiao:'未达标'
+    })
   },
   modelCancel: function(){
     this.setData({
