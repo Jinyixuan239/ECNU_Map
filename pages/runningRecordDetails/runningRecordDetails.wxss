@@ -1,0 +1,107 @@
+/* pages/runningRecordDetails/runningRecordDetails.wxss */
+
+.map_container{
+  position: absolute;
+  top: 0;
+  bottom: 250px;
+  left: 0;
+  right: 0;
+}
+.map{
+  width: 100%;
+  height: 100%;
+}
+
+.map_text{
+  position: absolute;
+  top: 0;
+  left: 0;
+  height:234rpx;
+  display: flex;
+}
+
+.speed1{
+  position: absolute;
+  width: 234rpx;
+  margin-left:98.28rpx;
+  margin-top: 23.4rpx;
+  font-size: 35.1rpx;
+  color: gray;
+}
+.speed{
+  position: absolute;
+  margin-left: 55rpx;
+  margin-top: 70.2rpx;
+  font-size: 58.5rpx;
+  color: black;
+  font-weight: bold;
+}
+.maxspeed1{
+  position: absolute;
+  width: 234rpx;
+  margin-left:98.28rpx;
+  margin-top: 163.8rpx;
+  font-size:30.42rpx;
+  color: gray;
+}
+.maxspeed{
+  position: absolute;
+  margin-left: 245.7rpx;
+  margin-top: 163.8rpx;
+  font-size: 30.42rpx;
+  color: black;
+  font-weight: bold;
+}
+.ifPass{
+  position: absolute;
+  width: 234rpx;
+  margin-left: 568.62rpx;
+  margin-top: 163.8rpx;
+  font-size: 30.42rpx;
+  color: black;
+  font-weight: bold;
+}
+.time1{
+  position: absolute;
+  width: 234rpx;
+  margin-left: 327.6rpx;
+  margin-top: 23.4rpx;
+  font-size: 35.1rpx;
+  color: gray;
+}
+.time{
+  position: absolute;
+  margin-left: 299.52rpx;
+  margin-top: 70.2rpx;
+  font-size: 58.5rpx;
+  color: black;
+  font-weight: bold;
+}
+.distance1{
+  position: absolute;
+  width: 234rpx;
+  margin-left: 585rpx;
+  margin-top: 23.4rpx;
+  font-size: 35.1rpx;
+  color: gray;
+}
+.distance{
+  position: absolute;
+  margin-left: 556.92rpx;
+  margin-top: 70.2rpx;
+  font-size: 58.5rpx;
+  color: black;
+  font-weight: bold;
+}
+
+.map_container{
+  position: absolute;
+  top: 234rpx;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.map{
+  width: 100%;
+  height: 100%;
+}

@@ -14,7 +14,7 @@ var path_tu="../../image/meijingdian.png";
 var that2;
 var lat,long,lat0,long0;
 var i=0,j=0;
-var s;
+var s=0;
 var maxspeed=0;
 var sum_must=0,sum_via=0;
 var k,k_;
@@ -32,19 +32,20 @@ function drawline(){
   });
 }
 function getlocation(){
-    lat=lat-0.000005;
-    long=long+0.000005;
-    point.push({latitude:lat,longitude:long});//测试代码
+    // lat=lat-0.000005;
+    // long=long+0.000005;
+    // point.push({latitude:lat,longitude:long});//测试代码
+    // console.log(point);
     
-  // wx.getLocation({
-  //   type:'gcj02',
-  //   success: function(res){
-  //     lat=res.latitude;
-  //     long=res.longitude;
-  //     point.push({latitude:lat,longitude:long});
-  //     console.log(point);
-  //   }
-  // })
+  wx.getLocation({
+    type:'gcj02',
+    success: function(res){
+      lat=res.latitude;
+      long=res.longitude;
+      point.push({latitude:lat,longitude:long});
+      console.log(point);
+    }
+  })
 }
 function Rad(d){
   return d * Math.PI / 180.0;//经纬度转换成三角函数中度分表形式。
@@ -64,7 +65,8 @@ function totalDistance(lat1,lng1,lat2,lng2){
   Math.cos(radLat1)*Math.cos(radLat2)*Math.pow(Math.sin(b/2),2)));
   s = s *6378.137 ;// 地球半径
   s = Math.round(s * 10000) / 10000; //输出为公里
-  var s_=s.toFixed(3);
+  s=last+s;
+  var s_=s.toFixed(2);
   that2.setData({
     distance:s_,
     s:s
@@ -126,20 +128,21 @@ function settime(){  // 设置跑步时间
 }
 function getspeed(){
   var speed;
-  // var second = that2.data.second;
-  // var minute = that2.data.minute;
-  // var hours = that2.data.hours;
+  var second = that2.data.second;
+  var minute = that2.data.minute;
+  var hours = that2.data.hours;
   var s1=that2.data.s;
-  var s2=that2.data.lastdistance;
-  var s=s1-s2;
-  //var time=hours+minute/60+second/3600;
-  var time=1/3600;
-  speed=s/time;
+  //var s2=that2.data.lastdistance;
+  //var s=s1-s2;
+  var time=hours*3600+minute*60+second;
+  //var time=1/3600;
+  speed=s1/time;
   var pace,pace_min,pace_sec;
   if(speed==0) pace=0;
   else pace=1/speed;
-  pace_min=Math.floor(pace*60);
-  pace_sec=((pace*60-pace_min).toFixed(2))*100
+  pace_min=Math.floor(pace/60);
+  pace_sec=Math.floor(pace%60);
+  speed=speed*3600;
   speed=speed.toFixed(2);
   that2.setData({
     speed:speed,
@@ -189,9 +192,9 @@ Page({
     pace_min:'0'+0,
     pace_sec:'0'+0,
     maxspeed:'0'+0+'m/s',
-    s:'0'+0,
-    distance:'0'+0,
-    lastdistance:'0'+0,
+    s:0,
+    distance:'0.0'+0,
+    lastdistance:0,
     hours: '0' + 0,
     minute: '0' + 0,
     second: '0' + 0,
@@ -202,8 +205,8 @@ Page({
     dabiao:'未达标'
   },
   onLoad: function () {
-   
     var that = this;
+   
     DB.where({
       _id: "a8831daa5fdc64f4001fb7b95c6a9395"
     }).get({
@@ -377,28 +380,34 @@ Page({
       i++;
       var r=[];
       //console.log(point[i-1].latitude);
+      
       getlocation();
+      console.log('i:'+i)
+      console.log(point[i].latitude);
       drawline();
-      totalDistance(lat0,long0,point[i-1].latitude,point[i-1].longitude);
+      totalDistance(point[i-1].latitude,point[i-1].longitude,point[i].latitude,point[i].longitude);
       settime();
       getspeed();
       getmaxspeed();
       IfPass();
-      var r1=getdistance(lat0+0.0001,long0+0.0001,point[i-1].latitude,point[i-1].longitude);//测试代码
+      //var r1=getdistance(lat0+0.0001,long0+0.0001,point[i-1].latitude,point[i-1].longitude);//测试代码
       //var r1=getdistance(markers[0].latitude,markers[0].longitude,point[i-1].latitude,point[i-1].longitude);
       for(var p=0;p<7;p++)
       {
-        r[p]=getdistance(markers[p].latitude,markers[p].longitude,point[i-1].latitude,point[i-1].longitude);
+        r[p]=getdistance(markers[p].latitude,markers[p].longitude,point[i].latitude,point[i].longitude);
       }
       for(var q=0;q<7;q++)
       {
-        if(r[q]<0.005&&count[q]==0)
+        if(r[q]<0.01&&count[q]==0)
         {
           count[q]=1;
           wx.vibrateShort();
           console.log('yes');
-          if(k==q||k_==q){markers[q].iconPath="../../image//bichecked.png";sum_must++;}
-          else{ markers[q].iconPath="../../image/tuchecked.png";sum_via++;}
+          if(k==q){markers[q].iconPath="../../image/bichecked.png";sum_must++;}
+          else{
+            if(k_==q){markers[q].iconPath="../../image/bichecked.png";sum_must++;}
+            else {markers[q].iconPath="../../image/tuchecked.png";sum_via++;}
+          }
           var path1=markers[0].iconPath;
           var path2=markers[1].iconPath;
           var path3=markers[2].iconPath;
@@ -406,7 +415,7 @@ Page({
           var path5=markers[4].iconPath;
           var path6=markers[5].iconPath;
           var path7=markers[6].iconPath;
-          console.log(markers[0]);
+          console.log(markers[q]);
           that2.setData({
             markers:[
              //位置1
@@ -510,6 +519,7 @@ Page({
         run_time_sec:that2.data.second,
         pace_min:that2.data.pace_min,
         pace_sec:that2.data.pace_sec,
+        maxspeed:that2.data.maxspeed,
         finish:that2.data.ifpass,
         point:point
       },
@@ -553,5 +563,36 @@ Page({
       mHidden:false
     })
     console.log(app.globalData.openid)
+  },
+  onUnload: function(){
+    clearInterval(this.timer);
+    point=[];
+    i=0;
+    // that2.setData
+    // ({
+    //   markers: [],
+    //   latitude: '',
+    //   longitude: '',
+    //   mHidden:true,
+    //   isright:0,
+    //   notstart:1,
+    // //跑步信息
+    //   polyline:[],
+    //   speed:'0'+0,
+    //   pace_min:'0'+0,
+    //   pace_sec:'0'+0,
+    //   maxspeed:'0'+0+'m/s',
+    //   s:'0'+0,
+    //   distance:'0'+0,
+    //   lastdistance:'0'+0,
+    //   hours: '0' + 0,
+    //   minute: '0' + 0,
+    //   second: '0' + 0,
+    //   date:'0'+0,
+    //   start_time:'0'+0,
+    //   end_time:'0'+0,
+    //   ifpass:0,
+    //   dabiao:'未达标'
+    // })
   }
 })

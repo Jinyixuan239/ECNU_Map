@@ -4,15 +4,22 @@
     src="cloud://ecnu-8gpse6bdd299c09f.6563-ecnu-8gpse6bdd299c09f-1304551843/frameWork (4)(1)/pages/image/1.png"
     mode="aspectFill"></image>
   <view class="out">
-    <view class="row" wx:for="{{dataList_test}}">
-      <view wx:if="{{item.ifPass>0}}" class="time1" style="opacity:{{0.8}}">{{item.startTime}}</view>
-      <view wx:else class='time2' style="opacity:{{0.8}}">{{item.startTime}}</view>
+    <view  wx:for="{{dataList}}">
+
+<view class="row" bindtap="goDetails" data-item='{{item._id}}'>
+  <view wx:if="{{item.finish>0}}" class="time1" style="opacity:{{0.8}}">{{item.datetime}}</view>
+      <view wx:else class='time2' style="opacity:{{0.8}}">{{item.datetime}}</view>
       <view class="text">
         <view class="title1">{{item.distance}}
           <view class="title2">km</view>
         </view>
-        <view class="title2">{{item.totalTime}}</view>
+        <view class="title2">{{item.pace_min}}分{{item.pace_sec}}秒</view>
       </view>
+
+</view>
+
+      
+      
     </view>
   </view>
 </view>

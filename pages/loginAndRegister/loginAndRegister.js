@@ -49,7 +49,7 @@ Page({
             openid = res.result.openid
             app.globalData.openid = res.result.openid
 
-            // console.log(app.globalData.openid)
+            console.log(app.globalData.openid)
             // console.log('openid--',openid)
             DB.where({
               _openid: openid

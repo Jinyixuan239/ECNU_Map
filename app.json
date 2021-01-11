@@ -1,9 +1,9 @@
 {
   "pages": [
-    
     "pages/loginAndRegister/loginAndRegister",
     "pages/home/home",
     "pages/runningRecord/runningRecord",
+    "pages/runningRecordDetails/runningRecordDetails",
     "pages/running/running",
     "pages/test/test"
   ],

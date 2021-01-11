@@ -55,7 +55,7 @@
 
 <view class="map_text">    
   <text class="speed1">配速</text>
-  <text class="speed">{{pace_min}}'{{pace_sec}}</text>
+  <text class="speed">{{pace_min}}:{{pace_sec}}</text>
 
   <text class='time1'>已用时</text>
   <text class='time'>{{minute}}:{{second}}</text>
@@ -79,7 +79,7 @@
 
 <view class="map_container">
   <map class='map' longitude='{{longitude}}' latitude='{{latitude}}' scale='16'  controls="{{controls}}" bindcontroltap="bindcontroltap" polyline='{{polyline}}' circles="{{circles}}"  bindmarkertap='bindmarkertap' bindcontroltap='bindcontroltap'
-    show-location  markers="{{markers}}">
+    show-location  markers="{{markers}}"> 
   
   <view wx:if="{{isright}}">
   <button class="start_run1" bindtap="start" style="width:140.4rpx"><view wx:if="{{notstart==1}}">开始</view><view wx:elif="{{notstart==0}}">暂停</view><view wx:else>继续</view></button>

@@ -1,60 +1,60 @@
-// pages/runningRecord/runningRecord.js
+// pages/runningRecordDetails/runningRecordDetails.js
+const db = wx.cloud.database()
+const _ = db.command
 const app = getApp()
 const appid = 'wx4d2d3d6b8ee499d6';
 const app_secret = "f0e90ced3722ec951b69ea8b88fd8a06";
 const url = "https://api.weixin.qq.com/sns/jscode2session?appid=APPID&secret=SECRET&js_code=JSCODE&grant_type=authorization_code";
-const db = wx.cloud.database({
-  env: '  ecnu-8gpse6bdd299c09f'
-})
-const _ = db.command
+var point=[];
+var that;
 
-
+function drawline(){
+  console.log('draw')
+  that.setData({
+    polyline:[{
+      points:point,
+      color:'#ff0000',
+      width:4,
+      dottedLine:false
+    }]
+  });
+  var poly=that.data.polyline;
+  console.log(poly)
+}
 
 Page({
-  goDetails:function(e){
-    console.log(e.currentTarget.dataset.item)
-    // console.log('1')
-    wx.setStorageSync("running_id", e.currentTarget.dataset.item)
-    wx.navigateTo({
-      url: "/pages/runningRecordDetails/runningRecordDetails"
-    })
-  },
-  /**
-   * 页面的初始数据
-   */
+  // 页面初始化
   data: {
-    userInfo: {},
-    openid: '',
-    dataList:{},
-    dataList_test:
-    [
-      {startTime:"2020-12-24",distance:"1.5",totalTime:"12分15秒",ifPass:1},
-      {startTime:"2020-12-23",distance:"1.2",totalTime:"9分15秒",ifPass:0},
-      {startTime:"2020-12-22",distance:"0.9",totalTime:"6分15秒",ifPass:0}
-    ]
+  //跑步信息
+    running:{},
+    polyline:[],
+    latitude: '31.227977',
+    longitude: '121.405814',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      openid:app.globalData.openid
-    })
-    
-    const db = wx.cloud.database()
-    // 查询当前用户
-    console.log(this.data.openid)
+    that=this
+    var polyline=that.data.polyline;
+    // console.log('1')
+    let running_id = wx.getStorageSync("running_id")
     db.collection('record').where({
-      _openid: this.data.openid
+      _id:running_id
     }).get({
-      success: res => {
-        this.setData({
-         dataList:res.data
+      success: function(res) {
+        // res.data 包含该记录的数据
+        point=res.data[0].point;
+        console.log(point);
+        that.setData({
+          running:res.data[0]
         })
-        console.log(dataList)
+        drawline();
+        console.log('poly:'+polyline)
       }
     })
+
   },
 
   /**

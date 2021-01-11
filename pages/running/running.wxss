@@ -83,7 +83,7 @@
 }
 .speed{
   position: absolute;
-  margin-left: 98.28rpx;
+  margin-left: 55rpx;
   margin-top: 70.2rpx;
   font-size: 58.5rpx;
   color: black;
@@ -131,7 +131,7 @@
 }
 .distance{
   position: absolute;
-  margin-left: 585rpx;
+  margin-left: 556.92rpx;
   margin-top: 70.2rpx;
   font-size: 58.5rpx;
   color: black;
